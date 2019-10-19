@@ -36,8 +36,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/signup")
-	public User signup(@RequestBody User user) {
-		return userService.signup(user);
+	public ResponseEntity<?> signup(@RequestBody User user) {
+		return ResponseEntity.ok(new JwtResponse(userService.signup(user)));
 	}
 	
 	@PostMapping("/login")

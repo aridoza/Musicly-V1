@@ -1,10 +1,5 @@
 package com.ga.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ga.config.JwtUtil;
 import com.ga.dao.UserDao;
 import com.ga.entity.User;
@@ -21,8 +16,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.ga.dao.UserDao;
-import com.ga.entity.User;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,7 +35,7 @@ public class UserServiceImpl implements UserService {
 		User user = userDao.getUserByUsername(username);
 
 		if (user == null)
-			throw new UsernameNotFoundException("Unkknown user: " + username);
+			throw new UsernameNotFoundException("Unknown user: " + username);
 
 		return new org.springframework.security.core.userdetails.User(user.getUsername(),
 				bCryptPasswordEncoder.encode(user.getPassword()), true, true, true, true, getGrantedAuthorities(user));
@@ -62,8 +55,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User signup(User user) {
-		return userDao.signup(user);
+	public String signup(User user) {
+		if (userDao.signup(user).getUserId() != null) {
+			UserDetails userDetails = loadUserByUsername(user.getUsername());
+			
+			return jwtUtil.generateToken(userDetails);
+		}
+		
+		return null;
 	}
 
 	@Override
