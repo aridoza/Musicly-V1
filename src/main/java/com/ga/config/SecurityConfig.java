@@ -1,6 +1,7 @@
 package com.ga.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -26,6 +27,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
+	private JwtRequestFilter jwtRequestFilter;
+	
+	@Autowired
 	UserService userService;
 
 	@Bean("encoder")
@@ -48,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .httpBasic()
 	        .and()
 	        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	    
+	    http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	
 //	@Override

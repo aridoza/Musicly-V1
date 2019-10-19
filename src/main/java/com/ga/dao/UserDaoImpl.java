@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 
 		return allUsers;
 	}
-	
+
 	@Autowired
 	UserRoleDao userRoleDao;
 
