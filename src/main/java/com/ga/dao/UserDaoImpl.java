@@ -92,7 +92,7 @@ public class UserDaoImpl implements UserDao {
     }
 
 	@Override
-	public User addSong(String username, int songId) {
+	public User addSong(String username, Long songId) {
 		Song song = null;
 		User user = null;
 
@@ -131,4 +131,31 @@ public class UserDaoImpl implements UserDao {
 
 		return user;
 	}
+	
+
+//	@Override
+//    public User addSong(String username, int songId) {
+//    		Song song = null;
+//        	User user = null;
+//
+//		Session session = sessionFactory.getCurrentSession();
+//		
+//		try {
+//			session.beginTransaction();
+//			
+//			user = (User)session.createQuery("FROM User u WHERE u.username = '" + 
+//				username + "'").uniqueResult();
+//			song = session.get(Song.class, songId);
+//			
+//			user.addSong(song);
+//			
+//			session.update(user);
+//			
+//			session.getTransaction().commit();
+//		} finally {
+//			session.close();
+//		}
+//		
+//		return user;
+//    }
 }

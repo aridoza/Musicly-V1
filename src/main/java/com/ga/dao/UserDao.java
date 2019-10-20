@@ -11,7 +11,7 @@ public interface UserDao {
 	public List<User> listUsers();
 	public User signup(User user);
 	public User login(User user);
-	public User addSong(String username, int songId);
+	public User addSong(String username, Long songId);
 	public User getUserByUsername(String username);
 	
 }

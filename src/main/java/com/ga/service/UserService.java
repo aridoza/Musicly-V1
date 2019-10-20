@@ -13,7 +13,7 @@ public interface UserService extends UserDetailsService {
 	public String signup(User user);
 	public String login(User user);
 //	public Long login(User user);
-	public User addSong(String username, int songId);
+	public User addSong(String username, Long songId);
 	
 	
 }
