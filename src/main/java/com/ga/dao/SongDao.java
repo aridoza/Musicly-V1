@@ -13,4 +13,6 @@ public interface SongDao {
 	public Song addSong(String username, Song newSong);
 
 	public List<Song> getSongs(String username);
+	
+	public Long deleteSong(Long songId);
 }

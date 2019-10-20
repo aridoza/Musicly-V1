@@ -19,6 +19,7 @@ public class SongDaoImpl implements SongDao {
 
 	@Override
 	public Song addSong(String username, Song song) {
+		
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -76,4 +77,24 @@ public class SongDaoImpl implements SongDao {
 //		User user = userDao.getUserByUsername(username);
 //		return user.getUserProfile();
 //	}
+	
+	@Override
+	public Long deleteSong(Long songId) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		Song savedSong = null;
+		
+		try {
+			session.beginTransaction();
+			
+			savedSong = session.get(Song.class, songId);
+			session.delete(savedSong);
+			
+			session.getTransaction().commit();
+		} finally {
+			session.close();
+		}
+		
+		return savedSong.getSongId();
+	}
 }

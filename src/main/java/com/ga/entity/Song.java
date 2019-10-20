@@ -14,7 +14,7 @@ public class Song {
 	 @Id
 	 @Column
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private int song_id;
+	 private Long song_id;
 	
 
 	@Column(unique = true, nullable = false)
@@ -31,16 +31,20 @@ public class Song {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> users;
 	
+	public List<User> getUsers() {return users; }
+	
+	public void setUsers(List<User> users) {this.users = users;}
+	
 	
 	public Song() {
 		
 	}
 
-	public int getSongId() {
+	public Long getSongId() {
 		return song_id;
 	}
 
-	public void setSongId(int song_id) {
+	public void setSongId(Long song_id) {
 		this.song_id = song_id;
 	}
 
@@ -59,9 +63,5 @@ public class Song {
 	public void setSongLength(Double songLength) {
 		this.songLength = songLength;
 	}
-	
-//	public List<User> getUsers() {return users; }
-//	
-//	public void setUsers(List<User> users) {this.users = users;}
 
 }

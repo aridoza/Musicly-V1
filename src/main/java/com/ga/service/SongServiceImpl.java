@@ -34,5 +34,10 @@ public class SongServiceImpl implements SongService {
 	public List<Song> getSongs(String username) {
 		return songDao.getSongs(username);
 	}	
+	
+	@Override
+	public Long deleteSong(Long songId) {
+		return songDao.deleteSong(songId);
+	}
 
 }

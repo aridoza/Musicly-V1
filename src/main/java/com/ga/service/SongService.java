@@ -15,4 +15,6 @@ public interface SongService {
 	
 	public List<Song> getSongs(String username);
 	
+	public Long deleteSong(Long songId);
+	
 }
