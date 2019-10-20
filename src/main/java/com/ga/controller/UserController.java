@@ -55,9 +55,9 @@ public class UserController {
 		return ResponseEntity.ok(new JwtResponse(userService.login(user)));
 	}
 
-	@PutMapping("/{username}/{songId}")
-	public User addCourse(@PathVariable String username, @PathVariable int songId) {
-		return userService.addSong(username, songId);
-	}
+//	@PutMapping("/{username}/{songId}")
+//	public User addSong(@PathVariable String username, @PathVariable int songId) {
+//		return userService.addSong(username, songId);
+//	}
 
 }

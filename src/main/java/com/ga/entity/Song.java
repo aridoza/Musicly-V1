@@ -14,7 +14,7 @@ public class Song {
 	 @Id
 	 @Column
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private int songId;
+	 private int song_id;
 	
 
 	@Column(unique = true, nullable = false)
@@ -37,11 +37,11 @@ public class Song {
 	}
 
 	public int getSongId() {
-		return songId;
+		return song_id;
 	}
 
-	public void setSongId(int songId) {
-		this.songId = songId;
+	public void setSongId(int song_id) {
+		this.song_id = song_id;
 	}
 
 	public String getSongName() {
@@ -60,8 +60,8 @@ public class Song {
 		this.songLength = songLength;
 	}
 	
-	public List<User> getUsers() {return users; }
-	
-	public void setUsers(List<User> users) {this.users = users;}
+//	public List<User> getUsers() {return users; }
+//	
+//	public void setUsers(List<User> users) {this.users = users;}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ga.entity.Song;
 import com.ga.entity.User;
+import com.ga.entity.UserProfile;
 
 @Repository
 public class SongDaoImpl implements SongDao {
@@ -17,7 +18,7 @@ public class SongDaoImpl implements SongDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public Song addSong(Song song) {
+	public Song addSong(String username, Song song) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -29,9 +30,30 @@ public class SongDaoImpl implements SongDao {
 
 		return song;
 	}
+	
+//	@Override
+//	public Song addSong(String username, Song song) {
+//		User user = songDao.getUserByUsername(username);
+//		
+//		Session session = sessionFactory.getCurrentSession();
+//		
+//		try {
+//			session.beginTransaction();
+//			
+//			session.save(userProfile);
+//			user.setUserProfile(userProfile);
+//			session.update(user);
+//			
+//			session.getTransaction().commit();
+//		} finally {
+//			session.close();
+//		}
+//
+//		return userProfile;
+//	}
 
 	@Override
-	public List<Song> getSongs() {
+	public List<Song> getSongs(String username) {
 		List<Song> allSongs = null;
 		
 		Session session = sessionFactory.getCurrentSession();
@@ -46,4 +68,12 @@ public class SongDaoImpl implements SongDao {
 		
 		return allSongs;
 	}
+	
+//
+
+//	@Override
+//	public UserProfile getUserProfile(String username) {
+//		User user = userDao.getUserByUsername(username);
+//		return user.getUserProfile();
+//	}
 }

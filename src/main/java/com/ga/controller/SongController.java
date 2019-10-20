@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ga.entity.Song;
+import com.ga.entity.UserProfile;
 import com.ga.service.SongService;
 
 @RestController
@@ -21,13 +22,23 @@ public class SongController {
 	SongService songService;
 	
 	
-	@PostMapping
-	public Song addSong(@RequestBody Song song) {
-		return songService.addSong(song);
-	}
+//	@PostMapping
+//	public Song addSong(@RequestBody Song song) {
+//		return songService.addSong(song);
+//	}
+//	
+//	@GetMapping("/list")
+//    public Iterable<Song> getSongs() {
+//        return songService.getSongs();
+//    }
 	
-	@GetMapping("/list")
-    public Iterable<Song> getSongs() {
-        return songService.getSongs();
+    @GetMapping("/{username}")
+    public List<Song> getSongs(@PathVariable String username) {
+        return songService.getSongs(username);
+    }
+    
+    @PostMapping("/{username}")
+    public Song addSong(@PathVariable String username, @RequestBody Song song) {
+        return songService.addSong(username, song);
     }
 }
